@@ -7,7 +7,7 @@ class Card:
         self.suit = suit
 
     def show(self):
-        print(self.rank, "of", self.suit)
+        return self.rank, self.suit
 
 
 class Deck:
@@ -17,7 +17,9 @@ class Deck:
 
     def build(self):
         for suit in ["clubs", "hearts", "diamonds", "spades"]:
-            for rank in range(1, 14):
+            for rank in range(2, 11):
+                self.cards.append(Card(rank, suit))
+            for rank in ["A", "K", "Q", "J"]:
                 self.cards.append(Card(rank, suit))
 
     def shuffle(self):

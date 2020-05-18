@@ -1,10 +1,16 @@
 from deck import Deck, Card
+from numpy import random
 
 
-class Discard:
-    def __init__(self):
-        self.cards = []
-        pass
+class Game:
+    def __init__(self, player1, player2):
+        self.player1, self.player2 = Player(player1), Player(player2)
+
+    def newhand(self):
+        self.firstplay = random.choice([self.player1, self.player2])
+        self.deck = Deck().shuffle()
+        
+        self.discard = [].append(self.deck.draw())
 
 
 class Player:
@@ -12,6 +18,7 @@ class Player:
         self.name = name
         self.hand = []
         self.played = []
+        self.points = 0
 
     def draw(self, deck):
         self.hand.append(deck.draw())
@@ -26,6 +33,7 @@ class Player:
 
     def discard(self, rank, suit):
         if Card(rank, suit) in self.hand:
+            return self.hand.remove(Card(rank, suit))
 
 
 
