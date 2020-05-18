@@ -6,10 +6,10 @@ class Game:
     def __init__(self, player1, player2):
         self.player1, self.player2 = Player(player1), Player(player2)
 
-    def newhand(self):
+    def deal(self):
         self.firstplay = random.choice([self.player1, self.player2])
         self.deck = Deck().shuffle()
-        
+        self.firstplay.draw(self.deck)
         self.discard = [].append(self.deck.draw())
 
 
